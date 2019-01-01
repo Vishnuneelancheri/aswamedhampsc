@@ -1,0 +1,42 @@
+<meta meta charset=utf-8>
+<table>
+    <td *ngFor = "let res of response; let i = index">
+         <button class="custom-main-menu-button"
+             [ngStyle] ="{ 'color':res.sampleColor, 'background-color':res.btnBg}"
+           (click) ="selectMainMenu(i)">{{res.menu_name}}</button>
+        
+    </td>
+</table>
+<div style="width: 50%; margin: 0 auto;font-weight:bold;">{{selectedText}}</div>
+<div   >
+    <table>
+        <td *ngFor = "let sub of subMenu; let i = index">
+             <button class="custom-menu-1-button"  [ngStyle] ="{ 'color':sub.txtClr, 'background-color':sub.btnBg}"
+               (click) ="selectMenu1(i)">{{sub.menu_1_name}}</button>
+            
+        </td>
+    </table>
+</div>
+
+<!-- <div style="background:rgba(189, 182, 182, 0.411); float: left; " *ngIf="isMenu1Selected">
+    <div class="split left"></div>
+    <div class="split right"></div>
+</div>  -->
+<div style="background:rgba(189, 182, 182, 0.411); float: left; "  >
+    <div class="split left">
+        <table style="width:100%">
+            <tr>
+                <button (click)="goToAddMultipleChceQtn(qtnHdrSt.header_id, qtnHdrSt.mcqsh_name, true)" *ngFor="let qtnHdrSt of addedQtnHeaders">{{qtnHdrSt.mcqsh_name}}</button>
+            </tr>
+            <tr>
+                <label for="qtn-header" >Question group tag</label>
+                <input type="text" class="qtn_tag" name="qtn-header" [(ngModel)]="qtnHeader"/>
+            </tr>
+             
+            <tr>
+                <button class="blue-button" (click)="submitHeader()" >Add</button>
+            </tr>
+        </table>
+    </div>
+     
+</div> 

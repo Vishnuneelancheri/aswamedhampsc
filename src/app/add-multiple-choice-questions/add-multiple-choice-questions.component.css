@@ -1,0 +1,19 @@
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .left {
+    left: 0;
+    background-color: rgba(173, 190, 202, 0.39);
+  }
+  
+  .right {
+    right: 0;
+    background-color: rgba(184, 135, 135, 0.438);
+  }

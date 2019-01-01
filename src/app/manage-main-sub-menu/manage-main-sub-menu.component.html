@@ -1,0 +1,52 @@
+<!-- <div class="split left"> 
+  <select [(ngModel)]="sample" name="answer">
+    <option *ngFor="let item of mainMenuList">{{ item.menu_name}}</option>
+  </select>
+  <table>
+    <tr  *ngFor="let item of mainMenuList">
+      <td><a>{{ item.menu_name}}</a><button>Delete</button></td>
+    </tr>
+  </table>
+</div>
+<div class="split right"></div>
+
+  -->
+  <div class="full-page">  
+      <div class="colmn">
+        <h2><p>Main menu</p>  </h2>
+        <input type="text" style="width:100%" [(ngModel)]="mainMenu" placeholder="Main menu"/>
+        <input type="checkbox" name="vehicle1" [(ngModel)]="isIndependant">No sub menu<br>
+        <button class="custom-menu-1-button" (click) ="addMainMenu()"  >Add</button>
+        <ul *ngFor="let item of mainMenuList">
+          <li style="width:100%" (click)="getMenu1(item.main_menu_id)">
+            {{ item.menu_name}}
+            <div style="float: left">
+              <button (click)="disableMenu(item.main_menu_id)">Delete</button>
+            </div>                
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="isSubmenu" class="colmn">
+          <h2><p>Sub menu</p></h2>
+          <input type="text" style="width:100%" placeholder="Submenu"/> 
+          <button class="custom-menu-1-button"    >Add</button>
+          <ul *ngFor="let menu1 of menu1List">
+              <li>{{ menu1.menu_1_name}}</li> 
+            </ul>
+      </div>
+      
+      <div class="colmn">
+          <ul *ngFor="let item of mainMenuList">
+              <!-- <li>{{ item.menu_name}}</li> -->
+              <li>----</li>
+            </ul>
+      </div>
+      <div class="colmn">
+          <ul *ngFor="let item of mainMenuList">
+              <!-- <li>{{ item.menu_name}}</li> -->
+              <li>----</li>
+            </ul>
+      </div>
+      
+  </div>

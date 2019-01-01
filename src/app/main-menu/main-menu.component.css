@@ -1,0 +1,63 @@
+
+
+.custom-main-menu-button{ 
+    background: white; 
+    border: none;
+    color: rgb(168, 168, 168);
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    float: left;
+}
+.custom-menu-1-button{ 
+    background: white; 
+    border: none;
+    color: rgb(168, 168, 168);
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    float: left;
+}
+.sample{
+    width: 100%;
+    height:  auto;  
+    float: left; 
+    background-color: aqua;
+}
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 4;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.left {
+    left: 0;
+    /* background-color: rgba(168, 47, 47, 0.315); */
+    padding: 20px;
+}
+.right {
+    right: 0;
+    /* background-color: rgba(132, 212, 139, 0.438); */
+    padding: 10px;
+
+}
+input, label {
+    display:block;
+}
+.qtn_tag{ 
+     
+    width:50%;
+    float: left;
+}
+.blue-button{
+    background: blue; 
+    border: none;
+    color: white;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+    float: left;
+}

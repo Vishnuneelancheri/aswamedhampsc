@@ -1,0 +1,60 @@
+<div class="split left">
+  <a  *ngFor="let temp of allQtnsUnderHead; let i = index"
+  (click) ="setQtn(temp.qtnId)"><p>{{i+1}} - {{temp.qtnName}}</p></a> 
+  <table>
+    <tr>
+      
+    </tr>
+  </table>
+</div>
+
+<div class="split right" style="padding:20px;">
+  <form name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !question.valid }">
+        <label for="username">Question</label>
+        <input type="text" class="form-control" name="question" [(ngModel)]="mltpleChce.question" #question="ngModel" required />
+        <div *ngIf="f.submitted && !question.valid" class="help-block">Username is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionA.valid }">
+        <label for="text">Option A</label>
+        <input type="text" class="form-control" name="optionA" [(ngModel)]="mltpleChce.optionA" #optionA="ngModel" required />
+        <div *ngIf="f.submitted && !optionA.valid" class="help-block">Option A is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionB.valid }">
+      <label for="text">Option B</label>
+      <input   class="form-control" name="optionB" [(ngModel)]="mltpleChce.optionB" #optionB="ngModel" required />
+      <div *ngIf="f.submitted && !optionB.valid" class="help-block">Option B is required</div>
+  </div>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionC.valid }">
+    <label for="text">Option C</label>
+    <input type="text" class="form-control" name="optionC" [(ngModel)]="mltpleChce.optionC" #optionC="ngModel" required />
+    <div *ngIf="f.submitted && !optionC.valid" class="help-block">Option C is required</div>
+  </div>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionD.valid }">
+    <label for="text">Option D</label>
+    <input type="text" class="form-control" name="optionD" [(ngModel)]="mltpleChce.optionD" #optionD="ngModel" required />
+    <div *ngIf="f.submitted && !optionD.valid" class="help-block">Option D is required</div>
+  </div>
+  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionD.valid }">
+      <label for="text">Anubandham</label>
+      <input type="text" class="form-control"  />
+      
+    </div>
+  <div class="form-group">
+    <label for="correctAnswer">Correct answer</label>
+    <select class="form-control" id="options"
+                  required
+                  [(ngModel)]="mltpleChce.answer" name="answer"
+                  #answer="ngModel">
+            <option *ngFor="let pow of options" [value]="pow">{{pow}}</option>
+          </select>
+          <div *ngIf="f.submitted && !answer.valid" class="alert alert-danger">
+            Required
+          </div>
+  </div>
+  <div class="form-group">
+      <button   class="btn btn-primary">Submit</button> 
+       
+  </div>
+  </form>
+</div>
