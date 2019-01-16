@@ -5,7 +5,8 @@ export class MultipleChceQtnModel {
         public optionB:string,
         public optionC:string,
         public optionD:string,
-        public answer:string
+        public answer:string,
+        public anubandham:string
     ){}
      
 }

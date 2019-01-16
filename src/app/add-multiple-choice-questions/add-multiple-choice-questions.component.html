@@ -32,12 +32,14 @@
   </div>
   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionD.valid }">
     <label for="text">Option D</label>
-    <input type="text" class="form-control" name="optionD" [(ngModel)]="mltpleChce.optionD" #optionD="ngModel" required />
+    <input type="text" class="form-control" name="optionD" [(ngModel)]="mltpleChce.optionD" #optionD="ngModel"
+     required />
     <div *ngIf="f.submitted && !optionD.valid" class="help-block">Option D is required</div>
   </div>
   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !optionD.valid }">
       <label for="text">Anubandham</label>
-      <input type="text" class="form-control"  />
+      <input type="text" class="form-control"  name="anubandham" [(ngModel)]="mltpleChce.anubandham" 
+      #optionD="ngModel"/>
       
     </div>
   <div class="form-group">

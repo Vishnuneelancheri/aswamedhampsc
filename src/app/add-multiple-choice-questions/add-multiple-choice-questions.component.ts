@@ -32,7 +32,7 @@ export class AddMultipleChoiceQuestionsComponent implements OnInit {
       this.loadQuestions( this.headerId );
     
     });
-    this.mltpleChce = new MultipleChceQtnModel("","","","","","",);
+    this.mltpleChce = new MultipleChceQtnModel("","","","","","","");
      this.relationId = this.router.snapshot.params.relationId;
      this.questionName = this.router.snapshot.params.question;
   }
@@ -42,7 +42,8 @@ export class AddMultipleChoiceQuestionsComponent implements OnInit {
     let url = "AdminLoginAction/add_option_relation_qtn";
     let body:any = {  "user_id":adminId,"token":token, "qtn_header":this.headerId,
       "qtn":this.mltpleChce.question, "optn_a":this.mltpleChce.optionA, "optn_b":this.mltpleChce.optionB,
-      "optn_c":this.mltpleChce.optionC, "optn_d":this.mltpleChce.optionD, "answer":this.mltpleChce.answer
+      "optn_c":this.mltpleChce.optionC, "optn_d":this.mltpleChce.optionD, "answer":this.mltpleChce.answer,
+      "anubandham":this.mltpleChce.anubandham
     };
     console.log( JSON.stringify(body));
     this.networkArea.postData(body,  url )

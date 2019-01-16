@@ -11,42 +11,50 @@
 <div class="split right"></div>
 
   -->
+  <div class="header">
+    <button class="btn btn-primary">Mock test</button>
+    <button  class="btn btn-primary" (click)="manageMenu()">Daily quiz</button>
+  </div>
   <div class="full-page">  
-      <div class="colmn">
+      <div class="colmn double" >
         <h2><p>Main menu</p>  </h2>
         <input type="text" style="width:100%" [(ngModel)]="mainMenu" placeholder="Main menu"/>
         <input type="checkbox" name="vehicle1" [(ngModel)]="isIndependant">No sub menu<br>
         <button class="custom-menu-1-button" (click) ="addMainMenu()"  >Add</button>
         <ul *ngFor="let item of mainMenuList">
-          <li style="width:100%" (click)="getMenu1(item.main_menu_id)">
+          <li style="width:100%" (click)="getMenu1(item.main_menu_id,item.menu_name)">
             {{ item.menu_name}}
             <div style="float: left">
-              <button (click)="disableMenu(item.main_menu_id)">Delete</button>
+              <button (click)="disableEnableMenu(item.main_menu_id, item.m_menu_isactive )">{{item.button_name}}</button>
             </div>                
           </li>
         </ul>
       </div>
-
-      <div *ngIf="isSubmenu" class="colmn">
+       
+      <div *ngIf="selectedMenu" class="colmn double">
           <h2><p>Sub menu</p></h2>
-          <input type="text" style="width:100%" placeholder="Submenu"/> 
-          <button class="custom-menu-1-button"    >Add</button>
-          <ul *ngFor="let menu1 of menu1List">
-              <li>{{ menu1.menu_1_name}}</li> 
-            </ul>
+          <p class="selected_main_menu" style="width:100%">{{selectedMenu}}</p>
+          <input type="text" style="width:100%" [(ngModel)]="newMenu1" placeholder="Submenu"/> 
+          <button class="custom-menu-1-button" (click)="addMenu1()" >Add</button>
+          <button style="width:100%" (click)="getAllMenu1()">Show all submenu</button>
+          <table>
+            <tr *ngFor="let menu1 of allMenu1List; let i = index" class="sub-page">
+              <td><button (click)="enabledisableMenu(i)">{{menu1.enableButtonName}}</button></td>
+              <td><p>{{menu1.menu_1_name}}</p></td>
+            </tr>
+          </table>
+          <!-- <ul style="width: 100%;"  *ngFor="let menu1 of allMenu1List"  >
+            <li class="sub-page" >
+
+              <div class="sub-colmn"><button >{{menu1.enableButtonName}}</button></div>
+              <div  class="sub-colmn"><p>{{menu1.menu_1_name}}</p></div>
+              <div class="sub-colmn"><button >{{menu1.enableButtonName}}</button></div>
+            </li>
+              
+          </ul> -->
       </div>
       
-      <div class="colmn">
-          <ul *ngFor="let item of mainMenuList">
-              <!-- <li>{{ item.menu_name}}</li> -->
-              <li>----</li>
-            </ul>
-      </div>
-      <div class="colmn">
-          <ul *ngFor="let item of mainMenuList">
-              <!-- <li>{{ item.menu_name}}</li> -->
-              <li>----</li>
-            </ul>
-      </div>
+      
+      
       
   </div>

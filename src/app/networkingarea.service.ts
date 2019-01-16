@@ -14,6 +14,6 @@ export class NetworkingareaService {
   public postData( body:any, url:string ){
     let currentUrl:any = this.baseUrl + url;  
     console.log( currentUrl);
-    return this.httpClient.post(currentUrl, body, httpOptions);
+    return this.httpClient.post(currentUrl, body, httpOptions);        
   }
 }

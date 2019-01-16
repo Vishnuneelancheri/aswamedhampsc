@@ -5,6 +5,7 @@ import { Route } from '@angular/compiler/src/core';
 import { LoginComponent } from '../login/login.component';
 import { HomeScreenComponent} from '../home-screen/home-screen.component';
 import { MainMenuComponent } from '../main-menu/main-menu.component';
+import { ManageSubmenuComponent } from '../manage-submenu/manage-submenu.component'
 import { ShowQuestionSetComponent } from '../show-question-set/show-question-set.component';
 import { AddMultipleChoiceQuestionsComponent } from '../add-multiple-choice-questions/add-multiple-choice-questions.component'
 import { from } from 'rxjs';
@@ -17,7 +18,8 @@ const routes:Routes = [
                 {path:'show_question_set', component:ShowQuestionSetComponent},
                 { path:'addmlplechceqtncompnt', component:AddMultipleChoiceQuestionsComponent, data:
                   {relationId:'', question:''} },
-                {path:'manage_main_sub_menu', component:ManageMainSubMenuComponent}
+                {path:'manage_main_sub_menu', component:ManageMainSubMenuComponent},
+                {path:'add_menu_1', component:ManageSubmenuComponent}
                 ] }
 ];
 @NgModule({

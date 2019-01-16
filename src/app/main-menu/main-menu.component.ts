@@ -15,6 +15,7 @@ export class MainMenuComponent implements OnInit {
   public addedQtnHeaders:any[];
   public selectedMainMenu:String;
   public size:any = 49; 
+  public selectedMenu1Id:string;
   public isMenu1Selected:boolean = false;
   public selectedText:String = "Nothing is selected";
   constructor( public dataShare:DataShareService, public networkArea:NetworkingareaService,
@@ -36,14 +37,16 @@ export class MainMenuComponent implements OnInit {
     let url:string = "AdminLoginAction/get_all_main_menu";
     this.networkArea.postData( body, url ).subscribe(
       data=>{
-        let response:any = data;
-        this.response = response;
+        let response:any = data; 
+        console.log( JSON.stringify( response))
+        this.response = response.main_menu;
         for( let i = 0; i < this.response.length; i++ ){
           this.response[i].btnBg = "white";
           this.response[i].sampleColor = "rgb(168, 168, 168)"; 
         }
+        
       }, error=>{
-
+    
       }
     );
   }
@@ -71,8 +74,7 @@ export class MainMenuComponent implements OnInit {
     let body:any = {"main_menu_id":this.response[a].main_menu_id, "token":token, "user_id":adminId} ;
      
     this.networkArea.postData( body, "AdminLoginAction/get_menu_1").subscribe(
-      data=>{
-        console.log(JSON.stringify(data));
+      data=>{ 
         let response:any = data;
         if( response.status == 1 ){
           this.subMenu = response.data.menu;
@@ -88,8 +90,9 @@ export class MainMenuComponent implements OnInit {
       }
     );
   }
-  public selectMenu1( select:any ){
+  public selectMenu1( select:any ){  
     this.isMenu1Selected = true;
+    this.selectedMenu1Id = this.subMenu[select].menu_1_id;
      this.selectedMainMenu = this.subMenu[select].relation_id;
     for( let i = 0; i < this.subMenu.length; i++ ){
       if( select == i ){
@@ -100,7 +103,7 @@ export class MainMenuComponent implements OnInit {
         this.subMenu[i].btnBg = "white";
       }
     }
-    let body:any = {"relation_id":this.selectedMainMenu} ;
+    let body:any = {"menu_1_id": this.selectedMenu1Id } ;
     this.networkArea.postData( body, "AdminLoginAction/get_qtn_header_indpdnt")
     .subscribe( 
       data=>{
@@ -109,10 +112,10 @@ export class MainMenuComponent implements OnInit {
       }, error=>{}
     );
   }
-  public submitHeader(){
+  public submitHeader(){ 
     let adminId:String = window.localStorage.getItem("admin_id");
     let token:String = window.localStorage.getItem("token");
-    let body:any = {"main_menu_1_id":this.selectedMainMenu, "token":token, "user_id":adminId,
+    let body:any = {"menu_1_id":this.selectedMenu1Id, "token":token, "user_id":adminId,
     "qtn_header":this.qtnHeader} ;
     this.networkArea.postData( body, "AdminLoginAction/add_mltple_qtn_header")
     .subscribe(
