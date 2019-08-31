@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NetworkingareaService } from '../networkingarea.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Menu1 } from '../menu_1/menu-1';
+import { Router,NavigationExtras } from '@angular/router'; 
   import { from } from 'rxjs';
 
 @Component({
@@ -20,7 +21,8 @@ export class ManageMainSubMenuComponent implements OnInit {
   public newMenu1:string;
   public selectedMenu:string;
   public selectedMenuId:number;
-  constructor( public networking:NetworkingareaService, public spinner:NgxSpinnerService  ) { }
+  constructor( public networking:NetworkingareaService, public spinner:NgxSpinnerService,
+    public router:Router  ) { }
 
   ngOnInit() {
     this.getMainMenu();
@@ -33,6 +35,7 @@ export class ManageMainSubMenuComponent implements OnInit {
     let url:string = "AdminLoginAction/get_all_main_menu";
     this.networking.postData( body, url ).subscribe(
       data=>{
+        this.spinner.hide();
         let response:any = data;
         let mainmenu:any = response.main_menu;
         for( let i = 0; i < mainmenu.length; i++ ){
@@ -105,6 +108,7 @@ export class ManageMainSubMenuComponent implements OnInit {
     let isDisable:boolean;
     this.networking.postData( body, url ).subscribe(
       data=>{
+        this.spinner.hide();
         let response:any = data;
         let mainmenu:any = response.main_menu;
         console.log( JSON.stringify( response ) )
@@ -119,7 +123,6 @@ export class ManageMainSubMenuComponent implements OnInit {
           }
           this.mainMenuList.push(item)
         }
-        this.spinner.hide();
       }, error=>{
         this.spinner.hide();
         alert("an error occured")
@@ -134,15 +137,17 @@ export class ManageMainSubMenuComponent implements OnInit {
     this.selectedMenuId = id;
     let adminId:String = window.localStorage.getItem("admin_id");
     let token:String = window.localStorage.getItem("token"); 
-    let body:any ={'user_id':adminId, 'token':token, 'main_menu_id':id};
-    let url = "AdminLoginAction/get_menu_1"; 
+    let body:any ={'admin_id':adminId, 'token':token, 'main_menu':id};
+    console.log( JSON.stringify(body));
+    let url = "AdminLoginAction/get_all_menu_1"; 
     this.spinner.show();
     this.networking.postData( body, url ).subscribe(
       data=>{
-        let response:any = data;
-        this.menu1List = response.data.menu;
+        this.spinner.hide();
+        let response:any = data; 
+        this.menu1List = response;
         this.selectedMenu = mainMenuName;
-        this.showMenu1List(response.data.menu);
+        this.showMenu1List(response);
         this.spinner.hide();
       }, error=>{
         this.spinner.hide();
@@ -191,17 +196,17 @@ export class ManageMainSubMenuComponent implements OnInit {
     this.spinner.show();
     this.networking.postData(body, url).subscribe(
       data=>{
+        this.spinner.hide();
         let response:any = data;
         this.newMenu1 = "";
         this.showMenu1List( response.data )
-        this.spinner.hide();
       },error=>{
         this.spinner.hide();
       }
     );
   }
   public showMenu1List( response:any){
-    console.log( JSON.stringify( response ))
+    console.log("showmenulist"+ JSON.stringify( response ))
     this.allMenu1List = []
         for( let i = 0; i < response.length; i++ ){
           let menu1Details:any = response[i];
@@ -229,14 +234,17 @@ export class ManageMainSubMenuComponent implements OnInit {
     this.spinner.show();
     this.networking.postData( body, url ).subscribe(
       data=>{
+        this.spinner.hide();
         let response:any = data;
         this.newMenu1 = "";
         this.showMenu1List( response.data )
-        this.spinner.hide();
       }, error=>{
         this.spinner.hide();}
     );
 
+  }
+  public goToMockTest(){
+    this.router.navigate(['home/mock_test_panel']);
   }
 }
  

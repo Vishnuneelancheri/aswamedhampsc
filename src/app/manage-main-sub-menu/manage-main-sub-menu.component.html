@@ -1,19 +1,6 @@
-<!-- <div class="split left"> 
-  <select [(ngModel)]="sample" name="answer">
-    <option *ngFor="let item of mainMenuList">{{ item.menu_name}}</option>
-  </select>
-  <table>
-    <tr  *ngFor="let item of mainMenuList">
-      <td><a>{{ item.menu_name}}</a><button>Delete</button></td>
-    </tr>
-  </table>
-</div>
-<div class="split right"></div>
-
-  -->
   <div class="header">
-    <button class="btn btn-primary">Mock test</button>
-    <button  class="btn btn-primary" (click)="manageMenu()">Daily quiz</button>
+    <button class="btn btn-primary" (click)="goToMockTest()">Mock test</button>
+    <button  class="btn btn-primary"  >Daily quiz</button>
   </div>
   <div class="full-page">  
       <div class="colmn double" >
@@ -23,9 +10,9 @@
         <button class="custom-menu-1-button" (click) ="addMainMenu()"  >Add</button>
         <ul *ngFor="let item of mainMenuList">
           <li style="width:100%" (click)="getMenu1(item.main_menu_id,item.menu_name)">
-            {{ item.menu_name}}
+            {{ item.menu_name }}
             <div style="float: left">
-              <button (click)="disableEnableMenu(item.main_menu_id, item.m_menu_isactive )">{{item.button_name}}</button>
+              <button (click)="disableEnableMenu( item.main_menu_id, item.m_menu_isactive )">{{item.button_name}}</button>
             </div>                
           </li>
         </ul>
@@ -43,15 +30,7 @@
               <td><p>{{menu1.menu_1_name}}</p></td>
             </tr>
           </table>
-          <!-- <ul style="width: 100%;"  *ngFor="let menu1 of allMenu1List"  >
-            <li class="sub-page" >
-
-              <div class="sub-colmn"><button >{{menu1.enableButtonName}}</button></div>
-              <div  class="sub-colmn"><p>{{menu1.menu_1_name}}</p></div>
-              <div class="sub-colmn"><button >{{menu1.enableButtonName}}</button></div>
-            </li>
-              
-          </ul> -->
+           
       </div>
       
       

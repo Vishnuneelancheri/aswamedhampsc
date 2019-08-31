@@ -6,6 +6,8 @@ export class AllQtnsUnderHead {
         public qtnHeaderId:string,
         public optionId:string,
         public optionValue:string,
-        public optionTag:string
+        public optionTag:string,
+        public anubandham:string,
+        public isActive:number
     ){}
 }

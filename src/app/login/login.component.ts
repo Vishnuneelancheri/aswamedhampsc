@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
     this.ngxSpinnerService.show();
     
     this.networkingArea.postData( body,"AdminLoginAction/login").subscribe( data=>{ 
-      //console.log(data); 
-      //this.ngxSpinnerService.hide();
+     
       this.ngxSpinnerService.hide();
       let response:any = data;
       if( response.status == 1){

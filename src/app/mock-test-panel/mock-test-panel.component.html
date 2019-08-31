@@ -1,0 +1,27 @@
+<div class="full-page"> 
+    <div class="colmn double" > 
+      <form (ngSubmit)="addMockHeader()" #f="ngForm">
+        <div class="form-group">
+            <label for="email">Test Name:</label>
+            <input type="email" name="header_name" [(ngModel)]="mock_header.header_name" #header_name="ngModel"
+             class="form-control"    >
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <div class="header-list" *ngFor="let header of headerList">
+          <div class="header-text">{{header.mock_Id}}</div>
+          <button style="width:30%; height:100%;">
+            {{header.is_active == 0 ? "Enable":"Disable"}}
+          </button>
+      </div>
+      <table class="show-header" >
+        <tr></tr>
+      </table>
+    </div>
+    <div class="colmn double" > 
+        
+    </div>
+    <div class="colmn double" > </div>
+<div>

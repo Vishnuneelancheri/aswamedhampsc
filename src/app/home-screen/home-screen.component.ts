@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { DataShareService } from '../data-share.service'
 import { Router,NavigationExtras } from '@angular/router'; 
+import { AppConstant } from '../app-constant';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-home-screen',
@@ -27,6 +29,9 @@ export class HomeScreenComponent implements OnInit {
   }
   public manageMenu(){
     this.router.navigate(['home/manage_main_sub_menu']);
+  }
+  public employmentNews( ){
+    this.router.navigate(['home/enews_ntce_dlynt',{ modulteType:AppConstant.EMPLOYMENT_NEWS}]);
   }
 
 }

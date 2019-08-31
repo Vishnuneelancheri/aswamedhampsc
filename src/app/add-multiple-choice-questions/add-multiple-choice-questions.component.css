@@ -17,3 +17,17 @@
     right: 0;
     background-color: rgba(184, 135, 135, 0.438);
   }
+
+  .half-division{
+    width:80%;
+    height:auto;
+    float:left; 
+  }
+  
+  .half-division1{
+    width:20%; 
+    float: right; 
+    height: auto; 
+    position: relative;
+  }
+   

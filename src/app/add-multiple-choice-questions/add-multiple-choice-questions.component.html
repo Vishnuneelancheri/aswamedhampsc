@@ -1,14 +1,19 @@
 <div class="split left">
-  <a  *ngFor="let temp of allQtnsUnderHead; let i = index"
-  (click) ="setQtn(temp.qtnId)"><p>{{i+1}} - {{temp.qtnName}}</p></a> 
+  
   <table>
-    <tr>
-      
-    </tr>
+      <tr style="border-bottom: 1px solid red; margin: 10%;"  *ngFor="let temp of allQtnsUnderHead; let i = index">
+        <div class="half-division" (click) ="setQtn(temp.qtnId)" >{{temp.qtnId}} - {{temp.qtnName }}</div>
+        <div class="half-division1"> 
+          <button style="margin: 10px" (click)="enab_disab_qtn(temp.qtnId,temp.isActive)">
+            {{temp.isActive == 0 ? "Enable":"Disable"}}
+          </button> 
+        </div> 
+      </tr> 
   </table>
 </div>
 
 <div class="split right" style="padding:20px;">
+  <button class="btn" (click)="clearAll()">Clear ALL</button>
   <form name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" novalidate>
     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !question.valid }">
         <label for="username">Question</label>
@@ -59,4 +64,5 @@
        
   </div>
   </form>
+  
 </div>

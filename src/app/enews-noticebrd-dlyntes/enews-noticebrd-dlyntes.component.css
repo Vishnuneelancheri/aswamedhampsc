@@ -1,0 +1,25 @@
+.parent{
+    display: block;
+}
+.heading {
+    text-align: center; 
+    font-weight: bold;
+    font-size: 30px;
+    background: red;
+  }
+.sub-menu{ 
+    background-color: #4CAF50;
+    color: white; 
+    float: left;
+    border: 1px solid green; /* Green border */ 
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block;
+}
+.column {
+    float: left;
+    width: 33%;
+    padding: 10px;  
+    
+  }

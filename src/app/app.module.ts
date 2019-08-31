@@ -16,6 +16,8 @@ import { ShowQuestionSetComponent } from './show-question-set/show-question-set.
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ManageMainSubMenuComponent } from './manage-main-sub-menu/manage-main-sub-menu.component';
 import { ManageSubmenuComponent } from './manage-submenu/manage-submenu.component';
+import { MockTestPanelComponent } from './mock-test-panel/mock-test-panel.component';
+import { EnewsNoticebrdDlyntesComponent } from './enews-noticebrd-dlyntes/enews-noticebrd-dlyntes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ManageSubmenuComponent } from './manage-submenu/manage-submenu.componen
     AddMultipleChoiceQuestionsComponent,
     ShowQuestionSetComponent,
     ManageMainSubMenuComponent,
-    ManageSubmenuComponent
+    ManageSubmenuComponent,
+    MockTestPanelComponent,
+    EnewsNoticebrdDlyntesComponent
   ],
   imports: [
     BrowserModule,

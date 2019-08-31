@@ -1,0 +1,16 @@
+<div class="parent">
+  <p class="heading">{{heading}}</p>
+  <div>
+    <div class="column">
+      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button> 
+      <input type="text" placeholder="Type" style="width: 100%" />
+      <button>Add type</button>
+    </div>
+    <div class="column">
+      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button>
+    </div>
+    <div class="column">
+      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button>
+    </div>
+  </div>
+</div>
