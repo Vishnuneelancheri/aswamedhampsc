@@ -24,6 +24,7 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
     });
   }
   public initView(){
+  
     if( this.moduleType == AppConstant.EMPLOYMENT_NEWS ){
       this.heading = "തൊഴിൽ അവസരങ്ങൾ";
     }

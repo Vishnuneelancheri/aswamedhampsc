@@ -2,15 +2,25 @@
   <p class="heading">{{heading}}</p>
   <div>
     <div class="column">
-      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button> 
+      <p>Category</p>
+      <div *ngFor="let submenu of submenuList">
+          <button class="sub-menu">{{submenu.name}}</button> 
+          <button>Delete</button>
+      </div>
       <input type="text" placeholder="Type" style="width: 100%" />
-      <button>Add type</button>
+      <button>Add category</button>
     </div>
     <div class="column">
-      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button>
+        <p>Sub-category</p>
+      <div *ngFor="let submenu of submenuList">
+          <button class="sub-menu" >{{submenu.name}}</button>
+          <button>Delete</button>
+      </div>
+      <input type="text" placeholder="Type" style="width: 100%" />
+      <button>Add subcategory</button>
     </div>
     <div class="column">
-      <button class="sub-menu" *ngFor="let submenu of submenuList">{{submenu.name}}</button>
+        <textarea name="paragraph_text" cols="50" rows="10"></textarea>
     </div>
   </div>
 </div>
