@@ -33,5 +33,11 @@ export class HomeScreenComponent implements OnInit {
   public employmentNews( ){
     this.router.navigate(['home/enews_ntce_dlynt',{ modulteType:AppConstant.EMPLOYMENT_NEWS}]);
   }
+  public dailyNotes(){
+    this.router.navigate(['home/enews_ntce_dlynt',{ modulteType:AppConstant.DAILY_NOTE}]);
+  }
+  public noticeBoard(){
+    this.router.navigate(['home/enews_ntce_dlynt',{ modulteType:AppConstant.NOTICE_BORD}]);
+  }
 
 }

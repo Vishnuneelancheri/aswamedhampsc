@@ -3,20 +3,21 @@
   <div>
     <div class="column">
       <p>Category</p>
-      <div *ngFor="let submenu of submenuList">
-          <button class="sub-menu">{{submenu.name}}</button> 
+      <div *ngFor="let mainMenu of mainMenuList">
+          <button class="sub-menu" (click)="loadSubMenu(mainMenu.id)">{{mainMenu.menuName}}</button> 
           <button>Delete</button>
+          <button (click)="editMainMenu()">Edit</button>
       </div>
-      <input type="text" placeholder="Type" style="width: 100%" />
-      <button>Add category</button>
+      <input type="text" [(ngModel)]="newMainMenu" placeholder="Type" style="width: 100%" />
+      <button (click)="addNewMainMenu()">{{addMainMenuButton}}</button>
     </div>
     <div class="column">
         <p>Sub-category</p>
-      <div *ngFor="let submenu of submenuList">
-          <button class="sub-menu" >{{submenu.name}}</button>
+      <div *ngFor="let submenu of subMenuList">
+          <button class="sub-menu" >{{submenu.subMenu}}</button>
           <button>Delete</button>
       </div>
-      <input type="text" placeholder="Type" style="width: 100%" />
+      <input type="text"  placeholder="Type" style="width: 100%" />
       <button>Add subcategory</button>
     </div>
     <div class="column">
