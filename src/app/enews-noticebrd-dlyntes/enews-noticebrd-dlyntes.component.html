@@ -5,10 +5,10 @@
       <p>Category</p>
       <div *ngFor="let mainMenu of mainMenuList">
           <button class="sub-menu" (click)="loadSubMenu(mainMenu.id)">{{mainMenu.menuName}}</button> 
-          <button>Delete</button>
-          <button (click)="editMainMenu()">Edit</button>
+          <button (click)="enaDisMain(mainMenu.id, mainMenu.menuName)">{{mainMenu.enabDisbBtn}}</button>
+          <button (click)="editMainMenu( mainMenu.id, mainMenu.menuName)">Edit</button>
       </div>
-      <input type="text" [(ngModel)]="newMainMenu" placeholder="Type" style="width: 100%" />
+      <input type="text" [(ngModel)]="newMainMenu" placeholder="Type" style="width: 100%; margin: 500dp" />
       <button (click)="addNewMainMenu()">{{addMainMenuButton}}</button>
     </div>
     <div class="column">

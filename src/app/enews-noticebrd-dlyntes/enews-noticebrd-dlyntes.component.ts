@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { AppConstant } from '../app-constant'
 import { NetworkingareaService } from '../networkingarea.service';
+
 import { from } from 'rxjs'; 
 @Component({
   selector: 'app-enews-noticebrd-dlyntes',
@@ -48,9 +49,11 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
     }
     this.loadMainMenu();
   }
-  public editMainMenu( id:number ){
+  public editMainMenu( id:number , menuName:String ){
     this.edtMainMenuId= id;
     this.isMainMenuEditing = true;
+    this.addMainMenuButton = "Edit '" + menuName +"'";
+    console.log( id );
   }
   public loadMainMenu(){
     let adminId:String = window.localStorage.getItem("admin_id");
@@ -121,27 +124,60 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
       this.mainMenuList = [];
       for( let i = 0; i < mainMenu.length; i++ ){
         let item:any = mainMenu[i];
-        this.mainMenuList.push( new MainMenu( item.menu_name, item.is_active, item.id ) );
+        let enabDisbBtn:String;
+        console.log("disen", item.is_active);
+        if( item.is_active == 1 ){
+          enabDisbBtn = "Disable";
+        }else if( item.is_active == -1 ){
+          enabDisbBtn = "Enable";
+        }
+        this.mainMenuList.push( new MainMenu( item.menu_name, item.is_active, item.id, enabDisbBtn ) );
       } 
-      console.log( this.mainMenuList );
+      
   }else
     alert( response.status.message);
+  }
+  public enaDisMain(id:number, mainMenu:String ){
+    this.edtMainMenuId = id;
+    this.updateDeleteMainMenu( false );
   }
   public updateDeleteMainMenu( isUpdate:boolean ){
     console.log("updatemainmenu");
     let adminId:String = window.localStorage.getItem("admin_id");
     let token:String = window.localStorage.getItem("token");
     let isDisableEnable:number;
-    let body:any;
+    let newMenu:String;
     if( isUpdate ){
+      isDisableEnable = 0;
+      newMenu = this.newMainMenu;
+      if( newMenu === ""){
+        alert("Field cannot be empty");
+        return;
+      }
+    }else{
+      newMenu = "";
       isDisableEnable = 1;
-    }else isDisableEnable = 0;
-
-    
+      
+    } 
+    let url:string = "EmploymentNewsDailyNotes/editEmploymentDailyMainMenu"; 
+    let body:any = {"token":token, "admin_id":adminId,"new_menu":newMenu, 
+      "menu_id":this.edtMainMenuId,"is_dis_en": isDisableEnable};
+    console.log( body );
+    this.network.postData( body, url ).subscribe(
+      data=>{
+        let response:any = data;
+        console.log( response );
+        this.updateMainMenu( response );
+        this.edtMainMenuId= null;
+        this.isMainMenuEditing = false;
+      }, error=>{
+        console.log( error )
+      }
+    );
   }
 }
 export class MainMenu{
-  constructor(public menuName:String, public isActive:number, public id:number){}
+  constructor(public menuName:String, public isActive:number, public id:number, public enabDisbBtn:String ){}
 
 }
 export class SubMenu{
