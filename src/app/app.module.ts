@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { NetworkingareaService } from './networkingarea.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { from } from 'rxjs';
+
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { FormsModule } from '@angular/forms';
 import { MainMenuComponent } from './main-menu/main-menu.component';
@@ -18,6 +19,9 @@ import { ManageMainSubMenuComponent } from './manage-main-sub-menu/manage-main-s
 import { ManageSubmenuComponent } from './manage-submenu/manage-submenu.component';
 import { MockTestPanelComponent } from './mock-test-panel/mock-test-panel.component';
 import { EnewsNoticebrdDlyntesComponent } from './enews-noticebrd-dlyntes/enews-noticebrd-dlyntes.component';
+import { ModalEditItemComponent } from './modal-edit-item/modal-edit-item.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,15 +34,19 @@ import { EnewsNoticebrdDlyntesComponent } from './enews-noticebrd-dlyntes/enews-
     ManageMainSubMenuComponent,
     ManageSubmenuComponent,
     MockTestPanelComponent,
-    EnewsNoticebrdDlyntesComponent
+    EnewsNoticebrdDlyntesComponent,
+    ModalEditItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
+  entryComponents:[ModalEditItemComponent],
   providers: [NetworkingareaService],
   bootstrap: [AppComponent]
 })

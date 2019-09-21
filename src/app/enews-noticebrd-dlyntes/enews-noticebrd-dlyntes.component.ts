@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { AppConstant } from '../app-constant'
 import { NetworkingareaService } from '../networkingarea.service';
-
-import { from } from 'rxjs'; 
+import{ ModalEditItemComponent } from '../modal-edit-item/modal-edit-item.component'
+import {MatDialog} from '@angular/material/dialog'; 
 @Component({
   selector: 'app-enews-noticebrd-dlyntes',
   templateUrl: './enews-noticebrd-dlyntes.component.html',
@@ -27,7 +27,7 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
   public mainMenuList:Array<MainMenu> = [];
   public subMenuList:Array<SubMenu> = [];
    
-  constructor( public router:ActivatedRoute, public network:NetworkingareaService ) { }
+  constructor( public router:ActivatedRoute, public network:NetworkingareaService, public dialog:MatDialog ) { }
 
   ngOnInit() {
     let sub:any = this.router.params.subscribe( params=>{
@@ -50,6 +50,8 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
     this.loadMainMenu();
   }
   public editMainMenu( id:number , menuName:String ){
+    const dialogRef = this.dialog.open( ModalEditItemComponent,{ width:'250px'});
+    dialogRef.afterClosed().subscribe( result=>{});
     this.edtMainMenuId= id;
     this.isMainMenuEditing = true;
     this.addMainMenuButton = "Edit '" + menuName +"'";
