@@ -24,3 +24,11 @@
     padding: 10px;  
     
   }
+  .details{
+    background: #4CAF50;
+    margin: 5px;
+    height: auto;
+    width: 100%;
+    color: white;
+    padding: 5px;
+  }

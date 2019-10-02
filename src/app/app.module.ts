@@ -20,7 +20,7 @@ import { ManageSubmenuComponent } from './manage-submenu/manage-submenu.componen
 import { MockTestPanelComponent } from './mock-test-panel/mock-test-panel.component';
 import { EnewsNoticebrdDlyntesComponent } from './enews-noticebrd-dlyntes/enews-noticebrd-dlyntes.component';
 import { ModalEditItemComponent } from './modal-edit-item/modal-edit-item.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatFormFieldModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -44,7 +44,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     NgxSpinnerModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,MatFormFieldModule
+  ],
+  exports:[
+    MatFormFieldModule
   ],
   entryComponents:[ModalEditItemComponent],
   providers: [NetworkingareaService],

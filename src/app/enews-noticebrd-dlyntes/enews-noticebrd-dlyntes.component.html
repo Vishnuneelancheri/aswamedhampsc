@@ -2,26 +2,36 @@
   <p class="heading">{{heading}}</p>
   <div>
     <div class="column">
-      <p>Category</p>
+      <p>Category: {{selectedMainMenu}}</p>
       <div *ngFor="let mainMenu of mainMenuList">
-          <button class="sub-menu" (click)="loadSubMenu(mainMenu.id)">{{mainMenu.menuName}}</button> 
+          <button class="sub-menu" (click)="loadSubMenu(mainMenu.id, mainMenu.menuName)">{{mainMenu.menuName}}</button> 
           <button (click)="enaDisMain(mainMenu.id, mainMenu.menuName)">{{mainMenu.enabDisbBtn}}</button>
           <button (click)="editMainMenu( mainMenu.id, mainMenu.menuName)">Edit</button>
       </div>
       <input type="text" [(ngModel)]="newMainMenu" placeholder="Type" style="width: 100%; margin: 500dp" />
-      <button (click)="addNewMainMenu()">{{addMainMenuButton}}</button>
+      <button (click)="addNewMainMenu()">Add new category</button>
     </div>
     <div class="column">
-        <p>Sub-category</p>
-      <div *ngFor="let submenu of subMenuList">
-          <button class="sub-menu" >{{submenu.subMenu}}</button>
-          <button>Delete</button>
+        <p>Sub-category: {{selectedSubMenu}}</p>
+      <div class="col-md-6 col-md-offset-3" *ngFor="let submenu of subMenuList">
+          <button class="sub-menu" (click)="actionDetails(submenu.id,submenu.subMenu,3,-1,-2,0,'s')" >{{submenu.subMenu}}</button>
+          <button class="btn btn-primary" (click) = "startEditSubmenu(submenu.id, submenu.subMenu, false )" >{{submenu.enabDisbBtn}}</button>
+          <button class="btn btn-primary"  (click) = "editSubmenu(submenu.id, submenu.subMenu)" >Edit</button>
       </div>
-      <input type="text"  placeholder="Type" style="width: 100%" />
-      <button>Add subcategory</button>
+      <input type="text" [(ngModel)]="newSubMenu"  placeholder="Type" style="width: 100%" />
+      <button (click)="addSubmenu()">Add subcategory</button>
     </div>
     <div class="column">
-        <textarea name="paragraph_text" cols="50" rows="10"></textarea>
+        <div class="details" *ngFor="let details of detailList">
+          <p>Heading {{details.header}}</p>
+          <p>Details: {{details.details}}</p>
+          <p style="color: white">Website link: <a href="{{details.webUrl}}" style="color: white" target="_blank">{{details.webUrl}}</a></p>
+          <div style="color: black" >
+              <button (click)="enabDisabDetails(details.id)"  >{{details.enabDisbBtn}}</button>
+              <button (click)="AddDetails(true,details.id)" >Edit</button> 
+          </div>
+        </div>
+        <button class="btn btn-primary" (click)= "AddDetails(false,-1)">Add new details</button>
     </div>
   </div>
 </div>
