@@ -3,8 +3,17 @@ import { NetworkingareaService } from '../networkingarea.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Menu1 } from '../menu_1/menu-1';
 import { Router,NavigationExtras } from '@angular/router'; 
+import {MatDialog,MatDialogRef} from '@angular/material/dialog';  
+import{ ModalEditItemComponent } from '../modal-edit-item/modal-edit-item.component';
   import { from } from 'rxjs';
 
+  export interface DialogData {
+    heading: string;
+    inputData: string;
+    secondfield:boolean;
+    detail:string;
+    webUrl:string;
+  }
 @Component({
   selector: 'app-manage-main-sub-menu',
   templateUrl: './manage-main-sub-menu.component.html',
@@ -22,7 +31,7 @@ export class ManageMainSubMenuComponent implements OnInit {
   public selectedMenu:string;
   public selectedMenuId:number;
   constructor( public networking:NetworkingareaService, public spinner:NgxSpinnerService,
-    public router:Router  ) { }
+    public router:Router,  public dialog:MatDialog  ) { }
 
   ngOnInit() {
     this.getMainMenu();
@@ -243,8 +252,78 @@ export class ManageMainSubMenuComponent implements OnInit {
     );
 
   }
-  public goToMockTest(){
+  public goToMockTest(  ){
     this.router.navigate(['home/mock_test_panel']);
+  }
+  public editSubMenu( menu1Id:number ){
+    const dialogRef = this.dialog.open( ModalEditItemComponent,{ width:'50%', height:'50%' ,
+      data:{ heading:"Edit main menu",  inputData:"Enter new value here", detail:null,secondfield:false, webUrl:null }
+    });
+    dialogRef.afterClosed().subscribe( result=>{
+      let temp:any = result;
+      if( temp.isCancel == true ) {
+        return;
+      } 
+      
+      this.spinner.show();
+      let adminId:String = window.localStorage.getItem("admin_id");
+      let token:String = window.localStorage.getItem("token"); 
+      let body:any = {'token':token, 'admin_id':adminId,
+       'main_menu_id': this.selectedMenuId,'menu_1_id':menu1Id, 'menu': temp.inputData };
+      let url:string = "CustomerRegistration/edit_menu_1";
+      console.log(body)
+      this.networking.postData( body, url ).subscribe( result=>{
+        let res:any = result;
+        this.showMenu1List( res.menu );
+        console.log(res)
+        this.spinner.hide();
+      }, error=>{
+        console.log(error.error);
+        this.spinner.hide();
+      });
+    });
+  }
+  public editMainMenu(menuId:number){
+    const dialogRef = this.dialog.open( ModalEditItemComponent,{ width:'50%', height:'50%' ,
+      data:{ heading:"Edit main menu",  inputData:"Enter new value here", detail:null,secondfield:false, webUrl:null }
+    });
+    dialogRef.afterClosed().subscribe( result=>{ 
+      let temp:any = result;
+      if( temp.isCancel == true ){
+        return;
+      }
+      let adminId:String = window.localStorage.getItem("admin_id");
+      let token:String = window.localStorage.getItem("token"); 
+      let body:any = {'token':token, 'admin_id':adminId, 'main_menu_id': menuId, 'menu': temp.inputData };
+      let url:string = "CustomerRegistration/edit_main_menu";
+      this.spinner.show();
+      this.networking.postData(body, url).subscribe(
+        data=>{
+          console.log( data );
+          let res:any = data;
+          this.spinner.hide();
+          let mainmenu = res.menu;
+          this.mainMenuList = Array();
+          for( let i = 0; i < mainmenu.length; i++ ){
+            let item:any = {"menu_name":mainmenu[i].m_menu_name, "main_menu_id":mainmenu[i].main_menu_id,
+              "m_menu_isactive":mainmenu[i].m_menu_isactive  
+            };
+            if(mainmenu[i].m_menu_isactive == 1){
+              item.button_name = "Disable";
+            }else{
+              item.button_name = "Enable";
+            }
+            this.mainMenuList.push(item);
+            this.spinner.hide();
+          }
+          
+        }, error=>{
+          console.log(error)
+          
+          this.spinner.hide();
+        }
+      );
+    });
   }
 }
  

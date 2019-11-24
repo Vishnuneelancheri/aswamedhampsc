@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { AppConstant } from '../app-constant'
 import { NetworkingareaService } from '../networkingarea.service';
-import{ ModalEditItemComponent } from '../modal-edit-item/modal-edit-item.component'
+import{ ModalEditItemComponent } from '../modal-edit-item/modal-edit-item.component';
 import {MatDialog,MatDialogRef} from '@angular/material/dialog';  
 export interface DialogData {
   heading: string;
@@ -52,7 +52,7 @@ export class EnewsNoticebrdDlyntesComponent implements OnInit {
       this.heading = "ഡെയിലി  നോട്ട്സ്";
       this.mainMenuType = 2;
     }else{
-      this.heading = "നോട്ടീസ് ബോർഡ്";
+      this.heading = "Current affairs";
       this.mainMenuType = 3;
     }
     this.loadMainMenu();

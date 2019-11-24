@@ -15,6 +15,7 @@
               <button (click)="disableEnableMenu( item.main_menu_id, item.m_menu_isactive )">{{item.button_name}}</button>
             </div>                
           </li>
+          <button style="width: 100%;" (click)="editMainMenu(item.main_menu_id)">Edit</button>
         </ul>
       </div>
        
@@ -24,12 +25,20 @@
           <input type="text" style="width:100%" [(ngModel)]="newMenu1" placeholder="Submenu"/> 
           <button class="custom-menu-1-button" (click)="addMenu1()" >Add</button>
           <button style="width:100%" (click)="getAllMenu1()">Show all submenu</button>
-          <table>
-            <tr *ngFor="let menu1 of allMenu1List; let i = index" class="sub-page">
-              <td><button (click)="enabledisableMenu(i)">{{menu1.enableButtonName}}</button></td>
-              <td><p>{{menu1.menu_1_name}}</p></td>
-            </tr>
-          </table>
+          <ul *ngFor="let menu1 of allMenu1List; let i = index" class="sub-page">
+              <table>
+                  <tr>
+                      <td ><p>{{menu1.menu_1_name}}</p></td>
+                  </tr>
+                <tr>
+                    <td style="width: 100%;"><button style="width: 100%;" (click)="enabledisableMenu(i)">{{menu1.enableButtonName}}</button></td>
+                </tr>
+                <tr>
+                    <td style="width: 100%;"><button style="width: 100%;" (click)="editSubMenu(menu1.menu_1_id)">Edit</button></td>
+                </tr>
+              </table>
+              
+            </ul>
            
       </div>
       

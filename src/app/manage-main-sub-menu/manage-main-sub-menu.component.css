@@ -33,6 +33,7 @@
 }
 .sub-page{
   width: 100%;
+  border-style: dotted;
 }
 .sub-colmn{
   float: left;

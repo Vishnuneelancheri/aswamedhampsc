@@ -9,7 +9,7 @@ export class NetworkingareaService {
   private baseUrl:string;
   constructor(private httpClient: HttpClient ) { 
     this.baseUrl = "http://aswamedhampsc.in/aswamedhampsc/api/aswamedham/index.php/";
-    //  this.baseUrl = "http://192.168.15.63:80/aswamedham/index.php/";
+    //  this.baseUrl = "http://192.168.1.6:80/aswamedham/index.php/";
   }
   public postData( body:any, url:string ){
     let currentUrl:any = this.baseUrl + url;  
