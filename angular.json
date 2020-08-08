@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "aswamedhampsc"
+  "defaultProject": "aswamedhampsc",
+  "cli": {
+    "analytics": "52bcc354-5fe0-44e9-902c-c46c5d981f00"
+  }
 }
